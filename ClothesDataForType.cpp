@@ -2,7 +2,6 @@
 #include "ClothesDataForType.h"
 #include "ClothesDataPiece.h"
 #include <iostream>
-#include <tuple>
 #include "Reader.h"
 
 using std::cout;
@@ -10,12 +9,10 @@ using std::endl;
 using std::string;
 using std::to_string;
 
-using std::get;
-
 #define SMALL_CLOTHES 41
 
 
-//Всё в заголовочном файле
+//Р’СЃС‘ РІ Р·Р°РіРѕР»РѕРІРѕС‡РЅРѕРј С„Р°Р№Р»Рµ
 
 void ClothesDataForType::addPosition(ClothesDataPiece p) { data.insert(p); }
 
@@ -44,10 +41,16 @@ void ClothesDataForType::rm(){
 
 string ClothesDataForType::fileFill() const noexcept {
 	string n;
+	char r;
+	short t;
 	for (auto& i : data) {
 		n += to_string(i.getAmount());
-		n+= (i.getSize() - 25 + 'A');
-		n+= (i.getHeight() - 30 + 'A');
+		r = i.getSize() - 35 + 'A';
+		t = i.getHeight() - 100;
+		if (t % 2) r = tolower(r);
+		t = t / 2;
+		n+=r;
+		n+=(t + 'A');
 	}
 	return n;
 }
@@ -68,8 +71,13 @@ void ClothesDataForType::cutFromString(string& s) {
 		c1 = s[i-1];
 		c2 = s[i];
 		p.setAmount(stoi(t));
-		p.setSize((short)(c1 - 'A') + 25);
-		p.setHeight((short)(c2 - 'A') + 30);
+		if (Reader::isLowerLetter(c1)) {
+			p.setSize((short)(c1 - 'a') + 35);
+			p.setHeight(((short)(c2 - 'A'))*2 + 101);
+		} else {
+			p.setSize((short)(c1 - 'A') + 35);
+			p.setHeight(((short)(c2 - 'A')) * 2 + 100);
+		}
 		data.insert(p);
 		s = s.substr(i + 1, s.length() - i - 1);
 		if (s.empty()) break;
