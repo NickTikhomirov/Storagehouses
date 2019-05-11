@@ -18,7 +18,7 @@ using std::ofstream;
 
 
 
-//Аналогично складу одежды, но немного иначе
+//РђРЅР°Р»РѕРіРёС‡РЅРѕ СЃРєР»Р°РґСѓ РѕРґРµР¶РґС‹, РЅРѕ РЅРµРјРЅРѕРіРѕ РёРЅР°С‡Рµ
 
 void StorageShoes::destroy() {
 	string t;
@@ -100,7 +100,7 @@ void StorageShoes::addData() {
 	do {
 		do {
 			cout << "Give me type of shoes:";
-			cin >> t;
+			t=Reader::readName();
 			if (t == "e" || t == "s") return;
 			if (contents.find(t) != contents.end()) cout << "This type already exists." << endl;
 			else p = true;
@@ -110,12 +110,12 @@ void StorageShoes::addData() {
 		cout << "Give me sizes and amounts (format: \"size-amount\"): " << endl;
 		cout << "If you want to stop giving information for this type and add another type with information, type \"n\"." << endl;
 		do {
-			cin >> t1;
+			t1=Reader::readString();
 			if (t1 == "e") return;
 			if (t1 == "s") break;
 			pair<short, int> r;
 			if (t1 != "s" && t1 != "n") {
-				if (!Reader::readDataForType_shoes(t1, r)) cout << "Incorrect input!";  //Здесь строка данных по марке обуви режется методом из Reader
+				if (!Reader::readDataForType_shoes(t1, r)) cout << "Incorrect input!";  //Р—РґРµСЃСЊ СЃС‚СЂРѕРєР° РґР°РЅРЅС‹С… РїРѕ РјР°СЂРєРµ РѕР±СѓРІРё СЂРµР¶РµС‚СЃСЏ РјРµС‚РѕРґРѕРј РёР· Reader
 				else  if (c < r.second) cout << "Not enough place" << endl;
 				else {
 					d.addPosition(r);
