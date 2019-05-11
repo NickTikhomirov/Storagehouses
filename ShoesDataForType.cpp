@@ -16,7 +16,7 @@ using std::ostream;
 
 #define SMALL_SHOES 37
 
-//В основном, всё описано в заголовочном файле
+//Р’ РѕСЃРЅРѕРІРЅРѕРј, РІСЃС‘ РѕРїРёСЃР°РЅРѕ РІ Р·Р°РіРѕР»РѕРІРѕС‡РЅРѕРј С„Р°Р№Р»Рµ
 
 
 void ShoesDataForType::addPosition(pair<short, int> p) {
@@ -74,7 +74,7 @@ string ShoesDataForType::fileFill() const noexcept{
 
 int ShoesDataForType::mapSize() const noexcept { return data.size(); }
 
-//Не очень простой метод, который вызывается другим не очень простым методом из StorageShoes. Результат - строку разбирают на данные 
+//РќРµ РѕС‡РµРЅСЊ РїСЂРѕСЃС‚РѕР№ РјРµС‚РѕРґ, РєРѕС‚РѕСЂС‹Р№ РІС‹Р·С‹РІР°РµС‚СЃСЏ РґСЂСѓРіРёРј РЅРµ РѕС‡РµРЅСЊ РїСЂРѕСЃС‚С‹Рј РјРµС‚РѕРґРѕРј РёР· StorageShoes. Р РµР·СѓР»СЊС‚Р°С‚ - СЃС‚СЂРѕРєСѓ СЂР°Р·Р±РёСЂР°СЋС‚ РЅР° РґР°РЅРЅС‹Рµ 
 void ShoesDataForType::cutFromString(string &s) {
 	int i;
 	string t;
