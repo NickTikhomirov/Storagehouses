@@ -15,7 +15,7 @@ using std::make_pair;
 using std::ofstream;
 
 
-//Чистка полей - просто перестраховка
+//Р§РёСЃС‚РєР° РїРѕР»РµР№ - РїСЂРѕСЃС‚Рѕ РїРµСЂРµСЃС‚СЂР°С…РѕРІРєР°
 void StorageClothes::destroy() {
 	string t;
 	setName(t);
@@ -31,7 +31,7 @@ StorageClothes::~StorageClothes() {
 }
 
 
-//Выводы - 2 штуки
+//Р’С‹РІРѕРґС‹ - 2 С€С‚СѓРєРё
 void StorageClothes::consOut() const noexcept {
 	Storage::consOut();
 	cout << "Type: Clothes" << endl;
@@ -79,34 +79,34 @@ string StorageClothes::filePut()const noexcept {
 }
 
 
-//Добавление информации по содержимому склада
+//Р”РѕР±Р°РІР»РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё РїРѕ СЃРѕРґРµСЂР¶РёРјРѕРјСѓ СЃРєР»Р°РґР°
 void StorageClothes::addData(){
 	string t,t1;
-	int c = capacityLeft(); //Чтобы не пересчитывать кучу раз оставшееся место, сохраним его
+	int c = capacityLeft(); //Р§С‚РѕР±С‹ РЅРµ РїРµСЂРµСЃС‡РёС‚С‹РІР°С‚СЊ РєСѓС‡Сѓ СЂР°Р· РѕСЃС‚Р°РІС€РµРµСЃСЏ РјРµСЃС‚Рѕ, СЃРѕС…СЂР°РЅРёРј РµРіРѕ
 	bool p = false;
 	cout << "Hello, this is user-friendly interface for data adding" << endl;
-	cout << "You may leave whenever you want, just type \"e\"." << endl;                 //В интерфейсе есть команды, позволяющие с ним взаимодействовать. На словах прогрессивно, на деле - убого
+	cout << "You may leave whenever you want, just type \"e\"." << endl;                 //Р’ РёРЅС‚РµСЂС„РµР№СЃРµ РµСЃС‚СЊ РєРѕРјР°РЅРґС‹, РїРѕР·РІРѕР»СЏСЋС‰РёРµ СЃ РЅРёРј РІР·Р°РёРјРѕРґРµР№СЃС‚РІРѕРІР°С‚СЊ. РќР° СЃР»РѕРІР°С… РїСЂРѕРіСЂРµСЃСЃРёРІРЅРѕ, РЅР° РґРµР»Рµ - СѓР±РѕРіРѕ
 	cout << "If you want to exit with saving your progress, type \"s\"." << endl;
 	cout << "By the way, this means you can\'t name your clothes with one of these two letters without adding anything else, sorry" << endl;
-	do{			//В силу особенностей условия и огромной вложенности всяких контейнеров, мне приходится крутить много циклов. Выходит тоже убого
+	do{			//Р’ СЃРёР»Сѓ РѕСЃРѕР±РµРЅРЅРѕСЃС‚РµР№ СѓСЃР»РѕРІРёСЏ Рё РѕРіСЂРѕРјРЅРѕР№ РІР»РѕР¶РµРЅРЅРѕСЃС‚Рё РІСЃСЏРєРёС… РєРѕРЅС‚РµР№РЅРµСЂРѕРІ, РјРЅРµ РїСЂРёС…РѕРґРёС‚СЃСЏ РєСЂСѓС‚РёС‚СЊ РјРЅРѕРіРѕ С†РёРєР»РѕРІ. Р’С‹С…РѕРґРёС‚ С‚РѕР¶Рµ СѓР±РѕРіРѕ
 		do {
 			cout << "Give me type of clothes:";
-			cin >> t;
+			t = Reader::readName();
 			if (t == "e" || t == "s") return;
 			if (contents.find(t) != contents.end()) cout << "This type already exists." << endl;
 			else p = true;
 		} while (!p);
 		ClothesDataForType d;
-		cout << "The storagehouse has " << c << " units of free space." << endl;    //На нуле должно бы автоматически выходить, но пусть лучше пользователь сам до этого дойдёт. Должно же быть в программе что-то философское
-		cout << "Give me sizes, heights and amounts (format: \"size-height-amount\"): " << endl;   //Не самый идеальный ввод, но хотя бы не столбец чисел - уже спасибо. Парсится строка в классе ClothesDataPiece. Для одежды аналогичный метод живёт в Reader
+		cout << "The storagehouse has " << c << " units of free space." << endl;    //РќР° РЅСѓР»Рµ РґРѕР»Р¶РЅРѕ Р±С‹ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РІС‹С…РѕРґРёС‚СЊ, РЅРѕ РїСѓСЃС‚СЊ Р»СѓС‡С€Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃР°Рј РґРѕ СЌС‚РѕРіРѕ РґРѕР№РґС‘С‚. Р”РѕР»Р¶РЅРѕ Р¶Рµ Р±С‹С‚СЊ РІ РїСЂРѕРіСЂР°РјРјРµ С‡С‚Рѕ-С‚Рѕ С„РёР»РѕСЃРѕС„СЃРєРѕРµ
+		cout << "Give me sizes, heights and amounts (format: \"size-height-amount\"): " << endl;   //РќРµ СЃР°РјС‹Р№ РёРґРµР°Р»СЊРЅС‹Р№ РІРІРѕРґ, РЅРѕ С…РѕС‚СЏ Р±С‹ РЅРµ СЃС‚РѕР»Р±РµС† С‡РёСЃРµР» - СѓР¶Рµ СЃРїР°СЃРёР±Рѕ. РџР°СЂСЃРёС‚СЃСЏ СЃС‚СЂРѕРєР° РІ РєР»Р°СЃСЃРµ ClothesDataPiece. Р”Р»СЏ РѕРґРµР¶РґС‹ Р°РЅР°Р»РѕРіРёС‡РЅС‹Р№ РјРµС‚РѕРґ Р¶РёРІС‘С‚ РІ Reader
 		cout << "If you want to stop giving information for this type and add another type with information, type \"n\"." << endl;
 		do {
-			cin >> t1;
+			t1=Reader::readString();
 			if (t1 == "e") return;
 			if (t1 == "s") break;
 			ClothesDataPiece r;
 			if (t1 != "s" && t1 != "n") {
-				if (!r.tryToFill(t1)) cout << "Incorrect input!";
+				if (!r.tryToFill(t1)) cout << "Incorrect input!"<<endl;
 				else if (c < r.getAmount()) cout << "Not enough place" << endl;
 				else {
 					d.addPosition(r);
@@ -123,12 +123,12 @@ void StorageClothes::addData(){
 }
 
 
-//Я сделал весьма специфичный ввод в файл, и обратно читать его с пол-пинка не выходит. Приходится использовать несколько вложенных методов с циклами
+//РЇ СЃРґРµР»Р°Р» РІРµСЃСЊРјР° СЃРїРµС†РёС„РёС‡РЅС‹Р№ РІРІРѕРґ РІ С„Р°Р№Р», Рё РѕР±СЂР°С‚РЅРѕ С‡РёС‚Р°С‚СЊ РµРіРѕ СЃ РїРѕР»-РїРёРЅРєР° РЅРµ РІС‹С…РѕРґРёС‚. РџСЂРёС…РѕРґРёС‚СЃСЏ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РЅРµСЃРєРѕР»СЊРєРѕ РІР»РѕР¶РµРЅРЅС‹С… РјРµС‚РѕРґРѕРІ СЃ С†РёРєР»Р°РјРё
 void StorageClothes::stringParser(string p) {
 	int aa[3];
 	aa[0] = aa[1] = aa[2] = 0;
 	int a = 0;
-	for (int i = 1; i < p.length(); i++) { //Считаем позиции, где надо будет обрезать
+	for (int i = 1; i < p.length(); i++) { //РЎС‡РёС‚Р°РµРј РїРѕР·РёС†РёРё, РіРґРµ РЅР°РґРѕ Р±СѓРґРµС‚ РѕР±СЂРµР·Р°С‚СЊ
 		if (Reader::isDigit(p[i]) && a == 0) {
 			aa[a] = i;
 			a++;
@@ -148,12 +148,13 @@ void StorageClothes::stringParser(string p) {
 	setName(p.substr(0, aa[0]));
 	setCapacity(stoi(p.substr(aa[0], aa[1] - aa[0])));
 	setCity(p.substr(aa[1], aa[2] - aa[1]));
-	if (a == 0) {  //А теперь пошли вырезать содержимое склада из строки
+	if (a == 0) {  //Рђ С‚РµРїРµСЂСЊ РїРѕС€Р»Рё РІС‹СЂРµР·Р°С‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ СЃРєР»Р°РґР° РёР· СЃС‚СЂРѕРєРё
 		string p1;
 		ClothesDataForType p2;
 		p = p.substr(aa[2] + 1, p.length() - aa[2] - 1);
 		while (!p.empty()) {
 			a = 0;
+			p2.rm();
 			while (!Reader::isDigit(p[a])) a++;
 			p1 = p.substr(0, a);
 			p = p.substr(a, p.length() - a);
