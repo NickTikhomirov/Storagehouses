@@ -8,24 +8,23 @@ using std::unordered_map;
 using std::pair;
 using std::string;
 
-//Склад обуви
+//РЎРєР»Р°Рґ РѕР±СѓРІРё
 class StorageShoes: public Storage{
 	unordered_map<string, ShoesDataForType> contents;
 public:
 	StorageShoes();
 	~StorageShoes();
-	//Очистка полей. Возможно, избыточное действие, но не убирать же его, раз написал
+	//РћС‡РёСЃС‚РєР° РїРѕР»РµР№. Р’РѕР·РјРѕР¶РЅРѕ, РёР·Р±С‹С‚РѕС‡РЅРѕРµ РґРµР№СЃС‚РІРёРµ, РЅРѕ РЅРµ СѓР±РёСЂР°С‚СЊ Р¶Рµ РµРіРѕ, СЂР°Р· РЅР°РїРёСЃР°Р»
 	void destroy();
 	
-	//Выводы, унаследованные от склада
+	//Р’С‹РІРѕРґС‹, СѓРЅР°СЃР»РµРґРѕРІР°РЅРЅС‹Рµ РѕС‚ СЃРєР»Р°РґР°
 	void consOut() const noexcept;
 	void contOut() const noexcept;
 
-	//Наследство от склада
+	//РќР°СЃР»РµРґСЃС‚РІРѕ РѕС‚ СЃРєР»Р°РґР°
 	int capacityLeft() const noexcept;
 	bool hasSmallSizes() const noexcept;
 	string filePut() const noexcept;
 	void addData();
 	void stringParser(string);
 };
-
