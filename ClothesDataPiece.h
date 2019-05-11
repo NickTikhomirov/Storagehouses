@@ -4,14 +4,14 @@
 using std::string;
 
 
-//У одежды слишком много полей для записи в пару, а кортеж мне не очень понравился
+//РЈ РѕРґРµР¶РґС‹ СЃР»РёС€РєРѕРј РјРЅРѕРіРѕ РїРѕР»РµР№ РґР»СЏ Р·Р°РїРёСЃРё РІ РїР°СЂСѓ, Р° РєРѕСЂС‚РµР¶ РјРЅРµ РЅРµ РѕС‡РµРЅСЊ РїРѕРЅСЂР°РІРёР»СЃСЏ
 class ClothesDataPiece
 {
-	static bool isCharAllowed(char);
+	
+public:
 	short size;
 	short height;
 	int amount;
-public:
 	ClothesDataPiece();
 	~ClothesDataPiece();
 
@@ -22,7 +22,7 @@ public:
 	short getHeight() const noexcept;
 	int getAmount() const noexcept;
 	
-	bool tryToFill(string);							//Парсер для строки вида "размер-рост-количество"
-	bool operator<(const ClothesDataPiece&) const;  //Сравнение перегрузил. Просили для какого-то контейнера, уже не помню точно
+	bool tryToFill(string);							//РџР°СЂСЃРµСЂ РґР»СЏ СЃС‚СЂРѕРєРё РІРёРґР° "СЂР°Р·РјРµСЂ-СЂРѕСЃС‚-РєРѕР»РёС‡РµСЃС‚РІРѕ"
+	bool operator<(const ClothesDataPiece& a) const noexcept;
 };
 
