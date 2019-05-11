@@ -13,7 +13,7 @@ Storage::~Storage(){}
 
 
 
-//Блок сеттеров и геттеров
+//Р‘Р»РѕРє СЃРµС‚С‚РµСЂРѕРІ Рё РіРµС‚С‚РµСЂРѕРІ
 void Storage::setName(string a) {name = a;}
 void Storage::setCity(string a) {city = a;}
 void Storage::setCapacity(int a) {capacity = a;}
@@ -22,7 +22,7 @@ string Storage::getCity()const noexcept {return city;}
 int Storage::getCapacity()const noexcept {return capacity;}
 
 
-//Классический вывод
+//РљР»Р°СЃСЃРёС‡РµСЃРєРёР№ РІС‹РІРѕРґ
 void Storage::consOut()const noexcept {
 	cout << "__Storehouse__" << endl;
 	cout << "Name: " << getName() << endl;
@@ -38,13 +38,13 @@ void Storage::consOut()const noexcept {
 }
 
 
-//Однострочный вывод
+//РћРґРЅРѕСЃС‚СЂРѕС‡РЅС‹Р№ РІС‹РІРѕРґ
 void Storage::shortOut() const noexcept {
 	cout << getName() << " - " << getCity() << " (" << getCapacity() << ")" << endl;
 }
 
 
-//У потомков это подробный вывод. У родительского класса это просто зеркало классического
+//РЈ РїРѕС‚РѕРјРєРѕРІ СЌС‚Рѕ РїРѕРґСЂРѕР±РЅС‹Р№ РІС‹РІРѕРґ. РЈ СЂРѕРґРёС‚РµР»СЊСЃРєРѕРіРѕ РєР»Р°СЃСЃР° СЌС‚Рѕ РїСЂРѕСЃС‚Рѕ Р·РµСЂРєР°Р»Рѕ РєР»Р°СЃСЃРёС‡РµСЃРєРѕРіРѕ
 void Storage::contOut()const noexcept {consOut();}
 
 
