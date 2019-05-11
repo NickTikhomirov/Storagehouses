@@ -42,20 +42,14 @@ using std::experimental::filesystem::directory_iterator;
 using std::experimental::filesystem::current_path;
 
 
-//Общение с пользователем. Интерфейсы - дело тонкое.
+//РћР±С‰РµРЅРёРµ СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј. РРЅС‚РµСЂС„РµР№СЃС‹ - РґРµР»Рѕ С‚РѕРЅРєРѕРµ.
 void textInteraction(){
-	cout << "What do you want to do?"<<endl;
-	cout << "0. Exit" << endl;
-	cout << "1. Get bases list" << endl;
-	cout << "2. Add new base" << endl;
-	cout << "3. Interact with existing base"<< endl;
-	cout << "4. Delete existing base" << endl;
-
+	cout << "Write HELP for list of interactions" << endl;
 }
 
 
 
-//Вывод списка баз. Ничего интересного - только способности filesystem library.
+//Р’С‹РІРѕРґ СЃРїРёСЃРєР° Р±Р°Р·. РќРёС‡РµРіРѕ РёРЅС‚РµСЂРµСЃРЅРѕРіРѕ - С‚РѕР»СЊРєРѕ СЃРїРѕСЃРѕР±РЅРѕСЃС‚Рё filesystem library.
 void list_bases(path ourDirectory){
 	bool f = false;
 	for (auto& p : directory_iterator(ourDirectory))
@@ -73,31 +67,32 @@ int main() {
 	short userInput=1;
 	DataBase DB;
 	path ourDirectory = current_path();
-	ourDirectory += "\\server";                                //Базы данных живут по адресу: "текущая директория/server". Папку назвал именно так, чтобы поатмосфернее было. 
-	if (!exists(ourDirectory)) create_directory(ourDirectory); //Самостоятельное создание такой директории, если её нет
+	ourDirectory += "\\server";                                //Р‘Р°Р·С‹ РґР°РЅРЅС‹С… Р¶РёРІСѓС‚ РїРѕ Р°РґСЂРµСЃСѓ: "С‚РµРєСѓС‰Р°СЏ РґРёСЂРµРєС‚РѕСЂРёСЏ/server". РџР°РїРєСѓ РЅР°Р·РІР°Р» РёРјРµРЅРЅРѕ С‚Р°Рє, С‡С‚РѕР±С‹ РїРѕР°С‚РјРѕСЃС„РµСЂРЅРµРµ Р±С‹Р»Рѕ. 
+	if (!exists(ourDirectory)) create_directory(ourDirectory); //РЎР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕРµ СЃРѕР·РґР°РЅРёРµ С‚Р°РєРѕР№ РґРёСЂРµРєС‚РѕСЂРёРё, РµСЃР»Рё РµС‘ РЅРµС‚
 
-	//Основная часть программы. В этом цикле пользователь будет крутиться до конца её работы.
-	while (userInput!=0) {
-		textInteraction();
-		userInput = Reader::readInt();     //Строка примечательна нашей первой встречей с классом Reader. Это, по сути, подкрученный cin
-		switch (userInput) {
-			case 0:{break;}	 //Выход из программы
-			case 1:{	//Вывод списка баз данных
+	//РћСЃРЅРѕРІРЅР°СЏ С‡Р°СЃС‚СЊ РїСЂРѕРіСЂР°РјРјС‹. Р’ СЌС‚РѕРј С†РёРєР»Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р±СѓРґРµС‚ РєСЂСѓС‚РёС‚СЊСЃСЏ РґРѕ РєРѕРЅС†Р° РµС‘ СЂР°Р±РѕС‚С‹.
+	try {
+		while (userInput != 0) {
+			textInteraction();
+			userInput = Reader::readInteraction();     //РЎС‚СЂРѕРєР° РїСЂРёРјРµС‡Р°С‚РµР»СЊРЅР° РЅР°С€РµР№ РїРµСЂРІРѕР№ РІСЃС‚СЂРµС‡РµР№ СЃ РєР»Р°СЃСЃРѕРј Reader. Р­С‚Рѕ, РїРѕ СЃСѓС‚Рё, РїРѕРґРєСЂСѓС‡РµРЅРЅС‹Р№ cin
+			switch (userInput) {
+			case 0: {break; }	 //Р’С‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹
+			case 1: {	//Р’С‹РІРѕРґ СЃРїРёСЃРєР° Р±Р°Р· РґР°РЅРЅС‹С…
 				cout << "List of bases:" << endl;
 				list_bases(ourDirectory);
 				break;
 			}
-			case 2:{	 //А здесь мы присутствуем при уникальном процессе - при рождении новой базы данных. Точнее, почти пустого файла
+			case 2: {	 //Рђ Р·РґРµСЃСЊ РјС‹ РїСЂРёСЃСѓС‚СЃС‚РІСѓРµРј РїСЂРё СѓРЅРёРєР°Р»СЊРЅРѕРј РїСЂРѕС†РµСЃСЃРµ - РїСЂРё СЂРѕР¶РґРµРЅРёРё РЅРѕРІРѕР№ Р±Р°Р·С‹ РґР°РЅРЅС‹С…. РўРѕС‡РЅРµРµ, РїРѕС‡С‚Рё РїСѓСЃС‚РѕРіРѕ С„Р°Р№Р»Р°
 				string n1;
-				cout<<"Give me base's name:";
-				cin>>n1;
-				Reader::fixstring(n1);    //Эта функция дописывает .txt к строке
-				ofstream pe(ourDirectory.string()+'\\'+n1);
+				cout << "Give me base's name:";
+				cin >> n1;
+				Reader::fixstring(n1);    //Р­С‚Р° С„СѓРЅРєС†РёСЏ РґРѕРїРёСЃС‹РІР°РµС‚ .txt Рє СЃС‚СЂРѕРєРµ
+				ofstream pe(ourDirectory.string() + '\\' + n1);
 				pe << "0";
 				pe.close();
 				break;
 			}
-			case 3: {	//Читаем базу данных из файла и переходим ко второму меню - интерфейсу работы с базами данных
+			case 3: {	//Р§РёС‚Р°РµРј Р±Р°Р·Сѓ РґР°РЅРЅС‹С… РёР· С„Р°Р№Р»Р° Рё РїРµСЂРµС…РѕРґРёРј РєРѕ РІС‚РѕСЂРѕРјСѓ РјРµРЅСЋ - РёРЅС‚РµСЂС„РµР№СЃСѓ СЂР°Р±РѕС‚С‹ СЃ Р±Р°Р·Р°РјРё РґР°РЅРЅС‹С…
 				string n1;
 				cout << "Give me base's name:";
 				cin >> n1;
@@ -105,11 +100,12 @@ int main() {
 				if (exists(*(new path(ourDirectory.string() + '\\' + n1)))) {
 					DB.setName(ourDirectory.string() + '\\' + n1);
 					DB.readFromFile();
-					DB.changeBaseInterface();			//Собственно, сам переход к другому меню
-				} else cout << "No such database"<<endl;
+					DB.changeBaseInterface();			//РЎРѕР±СЃС‚РІРµРЅРЅРѕ, СЃР°Рј РїРµСЂРµС…РѕРґ Рє РґСЂСѓРіРѕРјСѓ РјРµРЅСЋ
+				}
+				else cout << "No such database" << endl;
 				break;
 			}
-			case 4: {	//Удаление базы данных
+			case 4: {	//РЈРґР°Р»РµРЅРёРµ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
 				string n1;
 				cout << "Give me base's name:";
 				cin >> n1;
@@ -123,7 +119,11 @@ int main() {
 				break;
 			}
 			default: {cout << "Unidentified input. Kaput." << endl; }
+			}
+			cout << endl;
 		}
-		cout << endl;
+	}
+	catch (int) {
+		cout << "Got it, exiting." ;
 	}
 }
