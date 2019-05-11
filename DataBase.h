@@ -7,32 +7,32 @@ using std::string;
 using std::vector;
 
 
-//База данных
+//Р‘Р°Р·Р° РґР°РЅРЅС‹С…
 class DataBase{
 	string name;
-	void uniteSort(DataBase& tt1, DataBase& tt2, char style);  //Вспомогательный метод для соритровки
-	int countActive() const noexcept;						   //Уточняет размер вектора
-	void extractByRule(char, DataBase&) const noexcept;		   //Для формирования новых баз данных
-	bool getNameAndCity(string,string) const noexcept;		   //Проверяет, не ввел ли пользователь сочетание имя-город, которое уже есть
+	void uniteSort(DataBase& tt1, DataBase& tt2, char style);  //Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ СЃРѕСЂРёС‚СЂРѕРІРєРё
+	int countActive() const noexcept;						   //РЈС‚РѕС‡РЅСЏРµС‚ СЂР°Р·РјРµСЂ РІРµРєС‚РѕСЂР°
+	void extractByRule(char, DataBase&) const noexcept;		   //Р”Р»СЏ С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ РЅРѕРІС‹С… Р±Р°Р· РґР°РЅРЅС‹С…
+	bool getNameAndCity(string,string) const noexcept;		   //РџСЂРѕРІРµСЂСЏРµС‚, РЅРµ РІРІРµР» Р»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃРѕС‡РµС‚Р°РЅРёРµ РёРјСЏ-РіРѕСЂРѕРґ, РєРѕС‚РѕСЂРѕРµ СѓР¶Рµ РµСЃС‚СЊ
 public:
 	vector<Storage*> data;
-	void addItem(Storage*);		//Зачем-то добавляю элемент в public-поле через метод
+	void addItem(Storage*);		//Р—Р°С‡РµРј-С‚Рѕ РґРѕР±Р°РІР»СЏСЋ СЌР»РµРјРµРЅС‚ РІ public-РїРѕР»Рµ С‡РµСЂРµР· РјРµС‚РѕРґ
 
-	//Работа с именем базы данных. В основном функционал перенёс в Reader
+	//Р Р°Р±РѕС‚Р° СЃ РёРјРµРЅРµРј Р±Р°Р·С‹ РґР°РЅРЅС‹С…. Р’ РѕСЃРЅРѕРІРЅРѕРј С„СѓРЅРєС†РёРѕРЅР°Р» РїРµСЂРµРЅС‘СЃ РІ Reader
 	void setName(string);
 	string getName() const noexcept;
 	bool checkName() const noexcept;
 	void fixName();
 
-	void changeBaseInterface(); //Меню работы с базой данных
+	void changeBaseInterface(); //РњРµРЅСЋ СЂР°Р±РѕС‚С‹ СЃ Р±Р°Р·РѕР№ РґР°РЅРЅС‹С…
 	
-	void readFromFile();		//Чтение из файла
-	void consOut() const noexcept; //Вывод на экран содержимого
-	void save();				//Запись в файл
+	void readFromFile();		//Р§С‚РµРЅРёРµ РёР· С„Р°Р№Р»Р°
+	void consOut() const noexcept; //Р’С‹РІРѕРґ РЅР° СЌРєСЂР°РЅ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ
+	void save();				//Р—Р°РїРёСЃСЊ РІ С„Р°Р№Р»
 
-	void sort_this(char style);			//Сортировка по принципу
-	void getElementFromUser();			//Добавление нового элемента в контейнер с клавиатуры
+	void sort_this(char style);			//РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РїСЂРёРЅС†РёРїСѓ
+	void getElementFromUser();			//Р”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅС‚РµР№РЅРµСЂ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
 
-	bool deletePosition(string,string);	//Удаление с сохранением порядка остальных элементов
+	bool deletePosition(string,string);	//РЈРґР°Р»РµРЅРёРµ СЃ СЃРѕС…СЂР°РЅРµРЅРёРµРј РїРѕСЂСЏРґРєР° РѕСЃС‚Р°Р»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ
 };
 
