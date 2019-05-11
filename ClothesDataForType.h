@@ -5,13 +5,13 @@
 #include "ClothesDataPiece.h"
 
 using std::ostream;
-using std::set;
+using std::multiset;
 using std::string;
 
 
-//Аналогично ShoesDataForType, только для одежды - даже методы такие же
+//РђРЅР°Р»РѕРіРёС‡РЅРѕ ShoesDataForType, С‚РѕР»СЊРєРѕ РґР»СЏ РѕРґРµР¶РґС‹ - РґР°Р¶Рµ РјРµС‚РѕРґС‹ С‚Р°РєРёРµ Р¶Рµ
 class ClothesDataForType {
-	set<ClothesDataPiece> data;
+	multiset<ClothesDataPiece> data;
 public:
 	void contOut() const noexcept;
 	void addPosition(ClothesDataPiece);
@@ -19,6 +19,6 @@ public:
 	int countAmount() const noexcept;
 	void rm();
 	string fileFill() const noexcept;
-	int setSize() const noexcept;	//Не "установить размер", а "получить размер сета"
+	int setSize() const noexcept;	//РќРµ "СѓСЃС‚Р°РЅРѕРІРёС‚СЊ СЂР°Р·РјРµСЂ", Р° "РїРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂ СЃРµС‚Р°"
 	void cutFromString(string& );
 };
