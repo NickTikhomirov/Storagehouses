@@ -1,14 +1,16 @@
 #include "ClothesDataPiece.h"
 #include <string>
+#include "Reader.h"
 
 using std::string;
 using std::stoi;
 
 
-//Всё описано в заголовочном файле
+//Р’СЃС‘ РѕРїРёСЃР°РЅРѕ РІ Р·Р°РіРѕР»РѕРІРѕС‡РЅРѕРј С„Р°Р№Р»Рµ
 
-bool ClothesDataPiece::operator<(const ClothesDataPiece& a) const {
-	return size < a.getSize();
+
+bool ClothesDataPiece::operator<(const ClothesDataPiece& a)const noexcept {
+	return getSize()< a.getSize();
 }
 
 ClothesDataPiece::ClothesDataPiece()
@@ -33,13 +35,6 @@ int ClothesDataPiece::getAmount() const noexcept { return amount; }
 
 
 
-bool ClothesDataPiece::isCharAllowed(char r) {
-	if (r >= '0' && r <= '9') return true;
-	if (r == '-') return true;
-	return false;
-}
-
-
 bool ClothesDataPiece::tryToFill(string s) {
 	short p1 = 0;
 	short p2 = 0;
@@ -47,7 +42,7 @@ bool ClothesDataPiece::tryToFill(string s) {
 
 	if (s.length() < 5) return false;
 	for (int i = 0; i < s.length(); i++) {
-		if (!isCharAllowed(s[i])) return false;
+		if (!Reader::isCharFromSizeString(s[i])) return false;
 		if (s[i] == '-') {
 			if (i == 0 || i == s.length() - 1) return false;
 			if (s[i - 1] == '-') return false;
@@ -65,10 +60,10 @@ bool ClothesDataPiece::tryToFill(string s) {
 		else a[counter] += s[i];
 
 	counter = (short)stoi(a[0]);
-	if (counter < 25) return false;
+	if (!Reader::correctSize(counter,'c')) return false;
 	size = counter;
 	counter = (short)stoi(a[1]);
-	if (counter < 30) return false;
+	if (!Reader::correctSize(counter,'C')) return false;
 	height = counter;
 	amount = stoi(a[2]);
 	return true;
