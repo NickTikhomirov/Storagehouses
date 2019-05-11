@@ -14,7 +14,7 @@ using std::pair;
 
 
 
-//Всё описано в заголовочном файле
+//Р’СЃС‘ РѕРїРёСЃР°РЅРѕ РІ Р·Р°РіРѕР»РѕРІРѕС‡РЅРѕРј С„Р°Р№Р»Рµ
 
 
 bool Reader::isDigit(char r) {
@@ -71,7 +71,7 @@ bool Reader::readDataForType_shoes(string s, pair<short, int>& k) {
 		else a[counter] += s[i];
 
 	counter = (short)stoi(a[0]);
-	if (counter < 25) return false;
+	if (!correctSize(counter,'s')) return false;
 	k.first = counter;
 	k.second = stoi(a[1]);
 	return true;
@@ -83,6 +83,7 @@ string Reader::readString() {
 	cout << "> ";
 	do	getline(cin, t);
 	while (t.empty());
+	if (t == "halt") throw 1;
 	return t;
 }
 
@@ -185,3 +186,139 @@ int Reader::readCapacity() {
 	} while (a == 0);
 	return a;
 }
+
+
+
+
+bool Reader::correctSize(int a, char b) {
+	if (b == 's') {               // s for shoes
+		if (a > 22 && a < 55) return true;
+	} else if(b == 'c') {	      // c for clothes' size
+		if (a > 33 && a < 66) return true;
+	} else if(b == 'C') {	      // C for clothes' height
+		if (a > 99 && a < 201) return true;
+	}
+	return false;
+}
+
+
+
+int Reader::readInteractionBase() {
+	do {
+		string p = readString();
+		for (int i = 0; i < p.length(); i++)
+			p[i] = toupper(p[i]);
+		if (p == "EXIT") return 0;
+		if (p == "QUIT") return 0;
+		if (p == "Q") return 0;
+		if (p == "E") return 0;
+		if (p == "0") return 0;
+
+		if (p == "LIST") return 1;
+		if (p == "SHOW") return 1;
+		if (p == "ALL") return 1;
+		if (p == "SHOW ALL") return 1;
+		if (p == "LIST ALL") return 1;
+		if (p == "1") return 1;
+
+		if (p == "FIND") return 2;
+		if (p == "SEARCH") return 2;
+		if (p == "GOOGLE") return 2;
+		if (p == "2") return 2;
+
+		if (p == "ADD") return 3;
+		if (p == "APPEND") return 3;
+		if (p == "3") return 3;
+
+		if (p == "DELETE") return 4;
+		if (p == "4") return 4;
+
+		if (p == "SORT BY NAME") return 5;
+		if (p == "SORT NAME") return 5;
+		if (p == "NAME") return 5;
+		if (p == "5") return 5;
+
+		if (p == "SORT BY CAPACITY") return 6;
+		if (p == "SORT CAPACITY") return 6;
+		if (p == "CAPACITY") return 6;
+		if (p == "6") return 6;
+
+		if (p == "SAVE") return 7;
+		if (p == "7") return 7;
+
+		if (p == "EXTRACT") return 8;
+		if (p == "8") return 8;
+
+		if (p == "HELP") {
+			helpBase();
+			continue;
+		}
+
+		return 78;
+	} while (true);
+}
+
+
+void Reader::helpBase() {
+	cout << "This is your base manager helper" << endl;
+	cout << "If you need to exit, type EXIT or QUIT" << endl;
+	cout << "If you need to list all positions, type LIST or SHOW" << endl;
+	cout << "If you need to find a position, type SEARCH or FIND" << endl;
+	cout << "If you need to add a position, type ADD" << endl;
+	cout << "If you need to delete a position, type DELETE" << endl;
+	cout << "If you need to sort positions by name, type NAME" << endl;
+	cout << "If you need to sort positions by capacity, type CAPACITY" << endl;
+	cout << "If you need to save database, type SAVE" << endl;
+	cout << "If you need to sort extract some positions and form a new database, type EXTRACT" << endl;
+}
+
+int Reader::readInteraction() {
+	do {
+		string p = readString();
+		for (int i = 0; i < p.length(); i++)
+			p[i] = toupper(p[i]);
+		if (p == "EXIT") return 0;
+		if (p == "QUIT") return 0;
+		if (p == "Q") return 0;
+		if (p == "E") return 0;
+		if (p == "0") return 0;
+
+		if (p == "LIST") return 1;
+		if (p == "SHOW") return 1;
+		if (p == "ALL") return 1;
+		if (p == "SHOW ALL") return 1;
+		if (p == "LIST ALL") return 1;
+		if (p == "1") return 1;
+
+		if (p == "ADD") return 2;
+		if (p == "CREATE") return 2;
+		if (p == "2") return 2;
+
+		if (p == "INTERACT") return 3;
+		if (p == "READ") return 3;
+		if (p == "OPEN") return 3;
+		if (p == "3") return 3;
+
+		if (p == "DELETE") return 4;
+		if (p == "4") return 4;
+
+		if (p == "HELP") {
+			helpMain();
+			continue;
+		}
+
+		return 78;
+	} while (true);
+
+}
+
+
+void Reader::helpMain() {
+	cout << "This is your helper" << endl;
+	cout << "If you need to exit, type EXIT or QUIT" << endl;
+	cout << "If you need to list all bases, type LIST or SHOW" << endl;
+	cout << "If you need to add a database, type ADD or CREATE" << endl;
+	cout << "If you need to interact with certain database, type INTERACT or READ" << endl;
+	cout << "If you need to delete a databse, type DELETE" << endl;
+	}
+
