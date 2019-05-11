@@ -24,11 +24,12 @@ using std::experimental::filesystem::exists;
 
 bool DataBase::getNameAndCity(string n, string c) const noexcept{
 	for (const auto& a : data) {
-		if (a->getName() == n)
-			if (a->getCity() == c) {
-				cout << "This storagehouse already exists! Type different name and city." << endl;
-				return false;
-			}
+		if(a!=0)
+			if (a->getName() == n)
+				if (a->getCity() == c) {
+					cout << "This storagehouse already exists! Type different name and city." << endl;
+					return false;
+				}
 	}
 	return true;
 }
@@ -199,21 +200,12 @@ void DataBase::getElementFromUser(){
 
 
 void DataBase::changeBaseInterface() {
-	short p;
+	short p=1;
 	do {
-		cout<<"What do you want to do?"<<endl;
-		cout<<" 0. Exit"<<endl;
-		cout<<" 1. List all positions"<<endl;
-		cout<<" 2. Find a position"<<endl;
-		cout<<" 3. Add a position"<<endl;
-		cout<<" 4. Delete a position"<<endl;
-		cout<<" 5. Sort contents by name"<<endl;
-		cout<<" 6. Sort contents by capacity"<<endl;
-		cout<<" 7. Save results" << endl;
-		cout<<" 8. Extract some positions into new database" << endl;
-		cout << ">";
-		p = Reader::readInt();
-		switch (p) {
+		try {
+			cout << "Base manager active!" << endl;
+			p = Reader::readInteractionBase();
+			switch (p) {
 			case 1: {
 				consOut();
 				break;
@@ -224,20 +216,20 @@ void DataBase::changeBaseInterface() {
 				if (newBase.data.empty()) cout << "No storagehouses with this name" << endl;
 				else {
 					cout << "Results:" << endl;
-					for (auto& p : newBase.data) 
-						if(p!=0) {
+					for (auto& p1 : newBase.data)
+						if (p1 != 0) {
 							cout << " >";
-							p->shortOut();
+							p1->shortOut();
 						}
 					DataBase secondBase;
 					newBase.extractByRule('c', secondBase);
 					if (secondBase.data.empty()) cout << "No storagehouses with this city" << endl;
 					else {
 						cout << "Result:" << endl;
-						for (auto& p : newBase.data) 
-							if (p != 0) {
+						for (auto& p1 : newBase.data)
+							if (p1 != 0) {
 								cout << " >";
-								p->contOut();
+								p1->contOut();
 							}
 					}
 				}
@@ -282,19 +274,23 @@ void DataBase::changeBaseInterface() {
 					cin >> nn;
 					Reader::fixstring(nn);
 					path k(name);
-					nnn = k.parent_path().string()+'\\'+nn;
+					nnn = k.parent_path().string() + '\\' + nn;
 					if (exists(nnn)) cout << "This database already exists!" << endl;
 					else l = false;
 				} while (l);
-				ofstream ekjflewj(nnn);
 				cout << "Do you want to extract by capacity (0) or by city(1)?" << endl;
 				bool e_rule = Reader::read_0_or_1();
 				DataBase d;
 				if (e_rule) extractByRule('c', d);
 				else extractByRule('%', d);
 				d.setName(nnn);
-				d.save();
+				cout << "Searching done. Interacting with new database." << endl;
+				d.changeBaseInterface();
 			}
+			}
+		}
+		catch (int) {
+			cout << "You have returned to main page of base manager." << endl;
 		}
 	} while (p != 0);
 
@@ -329,7 +325,6 @@ void DataBase::readFromFile() {
 		}
 	}
 	f.close();
-	
 }
 
 
@@ -349,12 +344,12 @@ bool DataBase::deletePosition(string n, string c) {
 	for (int i = 0; i < data.size(); i++) {
 		if (sdvig == true)
 			data[i - 1] = data[i];
+		if (data[i] == 0) break;
 		if (data[i]->getName() == n && data[i]->getCity() == c) {
 			sdvig = true;
 			data[i]->destroy();
 			delete data[i];
 		}
-		if (data[i] == 0) break;
 	}
 	if (sdvig) data[data.size() - 1] = 0;
 	return sdvig;
