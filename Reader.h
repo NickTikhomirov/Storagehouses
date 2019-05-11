@@ -6,27 +6,32 @@ using std::string;
 using std::pair;
 
 
-//Класс для чтения с консоли
+//РљР»Р°СЃСЃ РґР»СЏ С‡С‚РµРЅРёСЏ СЃ РєРѕРЅСЃРѕР»Рё
 class Reader
 {
 public:
-	//Всякие проверки, которые даже, вроде есть в с++ и без моего вмешательства, но мне хочется свои
+	//Р’СЃСЏРєРёРµ РїСЂРѕРІРµСЂРєРё, РєРѕС‚РѕСЂС‹Рµ РґР°Р¶Рµ, РІСЂРѕРґРµ РµСЃС‚СЊ РІ СЃ++ Рё Р±РµР· РјРѕРµРіРѕ РІРјРµС€Р°С‚РµР»СЊСЃС‚РІР°, РЅРѕ РјРЅРµ С…РѕС‡РµС‚СЃСЏ СЃРІРѕРё
 	static bool isDigit(char);
 	static bool isLowerLetter(char);
 	static bool isNotUpperLetter(char);
-	static bool checkStringTxt(string); //Проверяет, чтобы строка заканчивалась на .txt
+	static bool checkStringTxt(string); 	//РџСЂРѕРІРµСЂСЏРµС‚, С‡С‚РѕР±С‹ СЃС‚СЂРѕРєР° Р·Р°РєР°РЅС‡РёРІР°Р»Р°СЃСЊ РЅР° .txt
 
 
-	static string readString();		//Чтение строки string с клавиатуры 
-	static int readInt();			//Чтение целочисленного с клавиатуры
-	static double readDouble();		//Чтение дробного с клавиатуры
+	static string readString();		//Р§С‚РµРЅРёРµ СЃС‚СЂРѕРєРё string СЃ РєР»Р°РІРёР°С‚СѓСЂС‹ 
+	static int readInt();			//Р§С‚РµРЅРёРµ С†РµР»РѕС‡РёСЃР»РµРЅРЅРѕРіРѕ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
+	static double readDouble();		//Р§С‚РµРЅРёРµ РґСЂРѕР±РЅРѕРіРѕ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
 
-	static string readCity();		//Чтение названия города
-	static string readName();		//Чтение названия склада
-	static int readCapacity();		//Чтение вместительности склада
-	static bool read_0_or_1();		//Чтение логического значения (0 или 1)
-	static bool readDataForType_shoes(string, pair<short, int>&); //Чтение std::pair<short,int>
-	static bool isCharFromSizeString(char); //Проверяет символ, чтобы он был 0....9 или -
-	static void fixstring(string&); //дописывает к строке .txt, если надо
+	static string readCity();		//Р§С‚РµРЅРёРµ РЅР°Р·РІР°РЅРёСЏ РіРѕСЂРѕРґР°
+	static string readName();		//Р§С‚РµРЅРёРµ РЅР°Р·РІР°РЅРёСЏ СЃРєР»Р°РґР°
+	static int readCapacity();		//Р§С‚РµРЅРёРµ РІРјРµСЃС‚РёС‚РµР»СЊРЅРѕСЃС‚Рё СЃРєР»Р°РґР°
+	static bool read_0_or_1();		//Р§С‚РµРЅРёРµ Р»РѕРіРёС‡РµСЃРєРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ (0 РёР»Рё 1)
+	static bool readDataForType_shoes(string, pair<short, int>&); //Р§С‚РµРЅРёРµ std::pair<short,int>
+	static bool isCharFromSizeString(char); //РџСЂРѕРІРµСЂСЏРµС‚ СЃРёРјРІРѕР», С‡С‚РѕР±С‹ РѕРЅ Р±С‹Р» 0....9 РёР»Рё -
+	static void fixstring(string&); 	//РґРѕРїРёСЃС‹РІР°РµС‚ Рє СЃС‚СЂРѕРєРµ .txt, РµСЃР»Рё РЅР°РґРѕ
+	
+	static int readInteractionBase();  	//Р§С‚РµРЅРёРµ РґРµР№СЃС‚РІРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃ Р±Р°Р·РѕР№ РґР°РЅРЅС‹С…
+	static void helpBase();			//РЎРїСЂР°РІРєР° РїРѕ РєРѕРјР°РЅРґР°Рј РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С…
+	static int readInteraction();		//Р§С‚РµРЅРёРµ РґРµР№СЃС‚РІРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ РѕСЃРЅРѕРІРЅРѕРј РјРµРЅСЋ
+	static void helpMain();			//РЎРїСЂР°РІРєР° РїРѕ РєРѕРјР°РЅРґР°Рј РІ РѕСЃРЅРѕРІРЅРѕРј РјРµРЅСЋ
+	static bool correctSize(int, char);     //РџСЂРѕРІРµСЂРєР° РЅР° РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РІРІРѕРґР° СЂР°Р·РјРµСЂР° РѕР±СѓРІРё/РѕРґРµР¶РґС‹
 };
-
