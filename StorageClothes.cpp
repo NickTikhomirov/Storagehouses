@@ -91,7 +91,7 @@ void StorageClothes::addData(){
 	do{			//В силу особенностей условия и огромной вложенности всяких контейнеров, мне приходится крутить много циклов. Выходит тоже убого
 		do {
 			cout << "Give me type of clothes:";
-			t = Reader::readName();
+			t = Reader::readName(false);
 			if (t == "e" || t == "s") return;
 			if (contents.find(t) != contents.end()) cout << "This type already exists." << endl;
 			else p = true;
