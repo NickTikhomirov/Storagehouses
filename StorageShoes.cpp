@@ -100,7 +100,7 @@ void StorageShoes::addData() {
 	do {
 		do {
 			cout << "Give me type of shoes:";
-			t=Reader::readName();
+			t=Reader::readName(false);
 			if (t == "e" || t == "s") return;
 			if (contents.find(t) != contents.end()) cout << "This type already exists." << endl;
 			else p = true;
