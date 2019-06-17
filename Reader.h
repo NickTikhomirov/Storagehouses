@@ -22,7 +22,7 @@ public:
 	static double readDouble();		//Чтение дробного с клавиатуры
 
 	static string readCity();		//Чтение названия города
-	static string readName();		//Чтение названия склада
+	static string readName(bool onlycaptals=true);		//Чтение названия склада
 	static int readCapacity();		//Чтение вместительности склада
 	static bool read_0_or_1();		//Чтение логического значения (0 или 1)
 	static bool readDataForType_shoes(string, pair<short, int>&); //Чтение std::pair<short,int>
