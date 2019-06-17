@@ -87,13 +87,13 @@ string Reader::readString() {
 	return t;
 }
 
-string Reader::readName() {
+string Reader::readName(bool onlycaptals) {
 	string t;
 	bool k;
 	do {
 		k = false;
 		t = readString();
-		if (isNotUpperLetter(t[0])) {
+		if (isNotUpperLetter(t[0])&&onlycapitals) {
 			cout << "First symbol has to be uppercase letter." << endl;
 			k = true;
 		}
