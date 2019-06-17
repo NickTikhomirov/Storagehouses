@@ -226,7 +226,7 @@ void DataBase::changeBaseInterface() {
 					if (secondBase.data.empty()) cout << "No storagehouses with this city" << endl;
 					else {
 						cout << "Result:" << endl;
-						for (auto& p1 : newBase.data)
+						for (auto& p1 : secondBase.data)
 							if (p1 != 0) {
 								cout << " >";
 								p1->contOut();
